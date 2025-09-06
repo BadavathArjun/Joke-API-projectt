@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunZone - Jokes & Facts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">😂 FunZone</div>
+      <div class="nav-toggle" id="navToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#joke-section">Jokes</a></li>
+        <li><a href="#fact-section">Facts</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#flags">Content Filters</a></li>
+        <li><a href="#info">API Info</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Welcome to FunZone 🎉</h1>
+      <p>Your daily dose of laughter and surprising facts. Click below and have fun!</p>
+      <div class="hero-buttons">
+        <a href="#joke-section" class="btn btn-primary">Get a Joke</a>
+        <a href="#fact-section" class="btn btn-secondary">Discover a Fact</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik05IDE0SDExTTkgMThIMTFNMTAgNUgxNEMxOC40MTgzIDUgMjIgOC41ODE3MiAyMiAxM0MyMiAxNy40MTgzIDE4LjQxODMgMjEgMTQgMjFIMTBDNS41ODE3MiAyMSAyIDE3LjQxODMgMiAxM0MyIDguNTgxNzIgNS41ODE3MiA1IDEwIDVaIiBzdHJva2U9IiM0YTkwZTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE1LjUgMTQuNUwxNy41IDEyLjVMMTUuNSAxMC41IiBzdHJva2U9IiM0YTkwZTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+" alt="Fun Illustration">
+    </div>
+  </section>
+
+  <!-- Joke Section -->
+  <section id="joke-section">
+    <div class="section-header">
+      <h2>Random Jokes</h2>
+      <p>Get your daily dose of laughter</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎭</div>
+      <div class="card-content">
+        <p id="joke">Click the button to get a joke!</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="getJoke()">Get Joke</button>
+          <button class="btn btn-secondary" onclick="copyToClipboard('joke')">Copy Joke</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fact Section -->
+  <section id="fact-section">
+    <div class="section-header">
+      <h2>Random Fun Facts</h2>
+      <p>Discover something new every day</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <div class="card-content">
+        <p id="fact">Click the button to discover something new!</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="getFact()">Get Fact</button>
+          <button class="btn btn-secondary" onclick="copyToClipboard('fact')">Copy Fact</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories">
+    <div class="section-header">
+      <h2>Joke Categories</h2>
+      <p>Explore different types of humor</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📂</div>
+      <div class="card-content">
+        <ul id="category-list">Loading categories...</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flags Section -->
+  <section id="flags">
+    <div class="section-header">
+      <h2>Content Filters</h2>
+      <p>Types of content that can be filtered out</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚫</div>
+      <div class="card-content">
+        <ul id="flag-list">Loading flags...</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Info Section -->
+  <section id="info">
+    <div class="section-header">
+      <h2>API Information</h2>
+      <p>Details about the services powering FunZone</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">ℹ️</div>
+      <div class="card-content">
+        <div id="api-info">Fetching API info...</div>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="getPing()">Check API Status</button>
+        </div>
+        <p id="ping-result"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-header">
+      <h2>About FunZone</h2>
+      <p>Learn about our mission and the technology behind the fun</p>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          FunZone is a lighthearted project built to spread positivity.  
+          It fetches random jokes from <strong>JokeAPI</strong> and random facts from a free <strong>Facts API</strong>.  
+          This project demonstrates <em>frontend skills</em> like API integration, UI design, and JavaScript functionality.
+        </p>
+        <div class="tech-stack">
+          <h3>Technology Stack</h3>
+          <div class="tech-icons">
+            <div class="tech-item">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-css3-alt"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-code"></i>
+              <span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>Made with ❤️ by Arjun | Powered by JokeAPI & Fun Facts API</p>
+      <div class="socials">
+        <a href="https://github.com/BadavathArjun"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/badavath-arjun-33ab93256/"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
