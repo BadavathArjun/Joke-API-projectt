@@ -119,7 +119,7 @@ async function getJoke(categories = [], flags = [], options = {}) {
 function getCustomJoke() {
   const language = document.getElementById('language').value;
   const format = document.getElementById('response-format').value;
-  const searchString = document.getElementById('search-string').value;
+  const searchString = document.getElementById('search-string').value.trim();
   const idMin = document.getElementById('id-min').value;
   const idMax = document.getElementById('id-max').value;
   const amount = document.getElementById('amount').value;
@@ -391,7 +391,6 @@ window.onload = () => {
   getCategories();
   getLanguages();
   getFlags();
-  getApiInfo();
   setupJokeTypeButtons();
   setupEventListeners();
   
