@@ -23,6 +23,7 @@
         <li><a href="#fact-section">Facts</a></li>
         <li><a href="#filter-section">Joke Filters</a></li>
         <li><a href="#advanced-fact-section">Advanced Fun Facts</a></li>
+        <li><a href="#submit-joke-section">Submit Joke</a></li>
         <li><a href="#about">About</a></li>
       </ul>
     </div>
@@ -35,7 +36,7 @@
       <p>Your daily dose of laughter and surprising facts. Click below and have fun!</p>
       <div class="hero-buttons">
         <a href="#joke-section" class="btn btn-primary">Get a Joke</a>
-        <a href="#fact-section" class="btn btn-secondary">Discover a Fact</a>
+        <a href="#fact-section" class="btn btn-secondary">Get a Fact</a>
       </div>
     </div>
     <div class="hero-image">
@@ -134,7 +135,7 @@
             <input type="text" id="search-string" class="form-control" placeholder="Enter search term" />
           </div>
           <div class="form-group">
-            <label>Search for a joke in this ID range:</label>
+            <label>Search for a joke in this ID range (1-318):</label>
             <div class="range-inputs">
               <input type="number" id="id-min" class="form-control" placeholder="Min ID" min="0" />
               <span class="range-separator">to</span>
@@ -189,7 +190,90 @@
       </div>
     </div>
   </section>
-
+  <!-- Submit Joke Section -->
+<section id="submit-joke-section">
+  <div class="section-header">
+    <h2>Submit Your Own Joke</h2>
+    <p>Share your humor with the world</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📝</div>
+    <div class="card-content">
+      <form id="submit-joke-form">
+        <div class="form-group">
+          <label for="joke-category">Category:</label>
+          <select id="joke-category" class="form-control" required>
+            <option value="">Select a category</option>
+            <option value="Programming">Programming</option>
+            <option value="Misc">Miscellaneous</option>
+            <option value="Dark">Dark</option>
+            <option value="Pun">Pun</option>
+            <option value="Spooky">Spooky</option>
+            <option value="Christmas">Christmas</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Joke Type:</label>
+          <div class="button-group">
+            <button type="button" class="joke-type-selector selected" data-type="single">Single</button>
+            <button type="button" class="joke-type-selector" data-type="twopart">Two-Part</button>
+          </div>
+          <input type="hidden" id="joke-type" value="single" required>
+        </div>
+        
+        <div id="single-joke-fields">
+          <div class="form-group">
+            <label for="joke-text">Joke:</label>
+            <textarea id="joke-text" class="form-control" rows="4" placeholder="Enter your joke here..." required></textarea>
+          </div>
+        </div>
+        
+        <div id="twopart-joke-fields" style="display: none;">
+          <div class="form-group">
+            <label for="joke-setup">Setup:</label>
+            <textarea id="joke-setup" class="form-control" rows="2" placeholder="Enter the setup..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="joke-delivery">Delivery:</label>
+            <textarea id="joke-delivery" class="form-control" rows="2" placeholder="Enter the punchline..."></textarea>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Flags (select any that apply):</label>
+          <div class="button-group flag-selectors">
+            <button type="button" class="flag-selector" data-flag="nsfw">NSFW</button>
+            <button type="button" class="flag-selector" data-flag="religious">Religious</button>
+            <button type="button" class="flag-selector" data-flag="political">Political</button>
+            <button type="button" class="flag-selector" data-flag="racist">Racist</button>
+            <button type="button" class="flag-selector" data-flag="sexist">Sexist</button>
+            <button type="button" class="flag-selector" data-flag="explicit">Explicit</button>
+          </div>
+          <input type="hidden" id="joke-flags">
+        </div>
+        
+        <div class="form-group">
+          <label for="joke-language">Language:</label>
+          <select id="joke-language" class="form-control">
+            <option value="en">English</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="pt">Portuguese</option>
+            <option value="cs">Czech</option>
+          </select>
+        </div>
+        
+        <div class="form-actions">
+          <button type="reset" class="btn btn-secondary">Reset Form</button>
+          <button type="submit" class="btn btn-primary">Submit Joke</button>
+        </div>
+      </form>
+      <div id="submit-result" class="submit-result"></div>
+    </div>
+  </div>
+</section>
   <!-- About Section -->
   <section id="about">
     <div class="section-header">
@@ -231,7 +315,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>Made with ❤️ by Arjun | Powered by JokeAPI & Fun Facts API</p>
+      <p>Made by Badavath Arjun | Powered by JokeAPI & Fun Facts API</p>
       <div class="socials">
         <a href="https://github.com/BadavathArjun"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/badavath-arjun-33ab93256/"><i class="fab fa-linkedin"></i></a>

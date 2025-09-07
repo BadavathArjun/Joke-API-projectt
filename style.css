@@ -700,3 +700,47 @@ footer p {
 .save-fact-btn:hover {
   color: #39a0ca;
 }
+/* Submit Joke Section */
+#submit-joke-section .section-header h2 {
+  color: #ff6b6b;
+}
+
+.joke-type-selector, .flag-selector {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid #ff6b6b;
+  background: white;
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.joke-type-selector:hover, .flag-selector:hover {
+  background: #ffeaea;
+}
+
+.joke-type-selector.selected, .flag-selector.selected {
+  background: #ff6b6b;
+  color: white;
+}
+
+.submit-result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.submit-result.success {
+  background-color: #e6f7ee;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.submit-result.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}

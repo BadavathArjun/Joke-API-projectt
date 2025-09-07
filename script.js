@@ -375,6 +375,138 @@ document.getElementById('reset-fact-form-btn').addEventListener('click', () => {
   document.getElementById('advanced-facts-list').innerHTML = '';
 });
 
+// --- Submit Joke Section Functions ---
+function initSubmitJokeSection() {
+  // Joke type toggle
+  document.querySelectorAll('.joke-type-selector').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.joke-type-selector').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      const type = button.getAttribute('data-type');
+      document.getElementById('joke-type').value = type;
+      
+      if (type === 'single') {
+        document.getElementById('single-joke-fields').style.display = 'block';
+        document.getElementById('twopart-joke-fields').style.display = 'none';
+        document.getElementById('joke-setup').removeAttribute('required');
+        document.getElementById('joke-delivery').removeAttribute('required');
+        document.getElementById('joke-text').setAttribute('required', '');
+      } else {
+        document.getElementById('single-joke-fields').style.display = 'none';
+        document.getElementById('twopart-joke-fields').style.display = 'block';
+        document.getElementById('joke-text').removeAttribute('required');
+        document.getElementById('joke-setup').setAttribute('required', '');
+        document.getElementById('joke-delivery').setAttribute('required', '');
+      }
+    });
+  });
+  
+  // Flag selection
+  const selectedFlags = [];
+  document.querySelectorAll('.flag-selector').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('selected');
+      const flag = button.getAttribute('data-flag');
+      
+      if (button.classList.contains('selected')) {
+        if (!selectedFlags.includes(flag)) selectedFlags.push(flag);
+      } else {
+        const index = selectedFlags.indexOf(flag);
+        if (index > -1) selectedFlags.splice(index, 1);
+      }
+      
+      document.getElementById('joke-flags').value = selectedFlags.join(',');
+    });
+  });
+  
+  // Form submission
+  document.getElementById('submit-joke-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    await submitJoke();
+  });
+  
+  // Form reset
+  document.getElementById('submit-joke-form').addEventListener('reset', () => {
+    document.querySelectorAll('.joke-type-selector').forEach((btn, index) => {
+      if (index === 0) {
+        btn.classList.add('selected');
+      } else {
+        btn.classList.remove('selected');
+      }
+    });
+    document.getElementById('joke-type').value = 'single';
+    document.getElementById('single-joke-fields').style.display = 'block';
+    document.getElementById('twopart-joke-fields').style.display = 'none';
+    
+    document.querySelectorAll('.flag-selector').forEach(btn => {
+      btn.classList.remove('selected');
+    });
+    document.getElementById('joke-flags').value = '';
+    
+    document.getElementById('submit-result').textContent = '';
+    document.getElementById('submit-result').className = 'submit-result';
+  });
+}
+
+// Submit joke to API
+async function submitJoke() {
+  const resultDiv = document.getElementById('submit-result');
+  resultDiv.textContent = 'Submitting your joke...';
+  resultDiv.className = 'submit-result';
+  
+  const formData = {
+    formatVersion: 3,
+    category: document.getElementById('joke-category').value,
+    type: document.getElementById('joke-type').value,
+    lang: document.getElementById('joke-language').value
+  };
+  
+  // Add flags if any
+  const flags = document.getElementById('joke-flags').value;
+  if (flags) {
+    formData.flags = {
+      nsfw: flags.includes('nsfw'),
+      religious: flags.includes('religious'),
+      political: flags.includes('political'),
+      racist: flags.includes('racist'),
+      sexist: flags.includes('sexist'),
+      explicit: flags.includes('explicit')
+    };
+  }
+  
+  // Add joke content based on type
+  if (formData.type === 'single') {
+    formData.joke = document.getElementById('joke-text').value;
+  } else {
+    formData.setup = document.getElementById('joke-setup').value;
+    formData.delivery = document.getElementById('joke-delivery').value;
+  }
+  
+  try {
+    const response = await fetch('https://v2.jokeapi.dev/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    const data = await response.json();
+    
+    if (data.error) {
+      throw new Error(data.message);
+    }
+    
+    resultDiv.textContent = 'Joke submitted successfully! Thank you for your contribution.';
+    resultDiv.className = 'submit-result success';
+    document.getElementById('submit-joke-form').reset();
+  } catch (error) {
+    resultDiv.textContent = `Error: ${error.message || 'Failed to submit joke. Please try again.'}`;
+    resultDiv.className = 'submit-result error';
+    console.error('Submission error:', error);
+  }
+}
+
 // Initialize on window load
 window.onload = () => {
   getCategories();
@@ -382,6 +514,7 @@ window.onload = () => {
   getFlags();
   setupJokeTypeButtons();
   setupEventListeners();
+  initSubmitJokeSection(); // Added this line
 
   // Animate cards appearance
   const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
