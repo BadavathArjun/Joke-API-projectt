@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FunZone - Jokes & Facts</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <!-- Navigation -->
@@ -22,6 +22,7 @@
         <li><a href="#joke-section">Jokes</a></li>
         <li><a href="#fact-section">Facts</a></li>
         <li><a href="#filter-section">Joke Filters</a></li>
+        <li><a href="#advanced-fact-section">Advanced Fun Facts</a></li>
         <li><a href="#about">About</a></li>
       </ul>
     </div>
@@ -34,15 +35,20 @@
       <p>Your daily dose of laughter and surprising facts. Click below and have fun!</p>
       <div class="hero-buttons">
         <a href="#joke-section" class="btn btn-primary">Get a Joke</a>
-        <a href="#fact-section" class="btn btn-secondary">Get a Fact</a>
+        <a href="#fact-section" class="btn btn-secondary">Discover a Fact</a>
       </div>
     </div>
     <div class="hero-image">
-      <svg width="400" height="400" viewBox="0 0 24 24" fill="none">
-        <path d="M9 14H11M9 18H11M10 5H14C18.4183 5 22 8.58172 22 13C22 17.4183 18.4183 21 14 21H10C5.58172 21 2 17.4183 2 13C2 8.58172 5.58172 5 10 5Z" stroke="#4a90e2" stroke-width="2" stroke-linecap="round"/>
-        <path d="M15.5 14.5L17.5 12.5L15.5 10.5" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M8 13H12M8 17H16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="17" cy="7" r="1" fill="#4a90e2"/>
+      <svg width="400" height="400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M9 14H11M9 18H11M10 5H14C18.4183 5 22 8.58172 22 13C22 17.4183 18.4183 21 14 21H10C5.58172 21 2 17.4183 2 13C2 8.58172 5.58172 5 10 5Z"
+          stroke="#4a90e2"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path d="M15.5 14.5L17.5 12.5L15.5 10.5" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8 13H12M8 17H16" stroke="white" stroke-width="2" stroke-linecap="round" />
+        <circle cx="17" cy="7" r="1" fill="#4a90e2" />
       </svg>
     </div>
   </section>
@@ -125,19 +131,19 @@
           </div>
           <div class="form-group">
             <label>Search for a joke that contains this search string:</label>
-            <input type="text" id="search-string" class="form-control" placeholder="Enter search term">
+            <input type="text" id="search-string" class="form-control" placeholder="Enter search term" />
           </div>
           <div class="form-group">
-            <label>Search for a joke in this ID range (1-318)</label>
+            <label>Search for a joke in this ID range:</label>
             <div class="range-inputs">
-              <input type="number" id="id-min" class="form-control" placeholder="Min ID" min="0">
+              <input type="number" id="id-min" class="form-control" placeholder="Min ID" min="0" />
               <span class="range-separator">to</span>
-              <input type="number" id="id-max" class="form-control" placeholder="Max ID" min="0">
+              <input type="number" id="id-max" class="form-control" placeholder="Max ID" min="0" />
             </div>
           </div>
           <div class="form-group">
             <label>Amount of jokes (1-10):</label>
-            <input type="number" id="amount" class="form-control" value="1" min="1" max="10">
+            <input type="number" id="amount" class="form-control" value="1" min="1" max="10" />
           </div>
           <div class="form-actions">
             <button type="button" class="btn btn-secondary" id="reset-form-btn">Reset Form</button>
@@ -145,6 +151,41 @@
           </div>
         </form>
         <div id="filtered-joke-result"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Fun Facts Section -->
+  <section id="advanced-fact-section">
+    <div class="section-header">
+      <h2>Advanced Fun Facts</h2>
+      <p>Explore, filter, and collect amazing fun facts from different domains!</p>
+    </div>
+    <div class="card filter-card">
+      <div class="card-icon">📚</div>
+      <div class="card-content">
+        <form id="fact-filter-form" onsubmit="return false;">
+          <div class="form-group">
+            <label>Category:</label>
+            <div id="fact-category-buttons" class="button-group">
+              <button type="button" class="fact-cat-btn selected" data-category="all">All</button>
+              <button type="button" class="fact-cat-btn" data-category="animal">Animals</button>
+              <button type="button" class="fact-cat-btn" data-category="space">Space</button>
+              <button type="button" class="fact-cat-btn" data-category="history">History</button>
+              <button type="button" class="fact-cat-btn" data-category="tech">Tech</button>
+              <button type="button" class="fact-cat-btn" data-category="random">Random</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fact-amount">Number of facts:</label>
+            <input type="number" id="fact-amount" class="form-control" min="1" max="5" value="1" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="reset-fact-form-btn">Reset</button>
+            <button type="button" class="btn btn-primary" id="load-facts-btn">Get Facts</button>
+          </div>
+        </form>
+        <div id="advanced-facts-list"></div>
       </div>
     </div>
   </section>
@@ -158,9 +199,9 @@
     <div class="about-content">
       <div class="about-text">
         <p>
-          FunZone is a lighthearted project built to spread positivity.
-          It fetches random jokes from <strong>JokeAPI</strong> and random facts from a free <strong>Facts API</strong>.
-          This project demonstrates <em>frontend skills</em> like API integration, UI design, and JavaScript functionality.
+          FunZone is a lighthearted project built to spread positivity. It fetches random jokes from
+          <strong>JokeAPI</strong> and random facts from a free <strong>Facts API</strong>. This project
+          demonstrates <em>frontend skills</em> like API integration, UI design, and JavaScript functionality.
         </p>
         <div class="tech-stack">
           <h3>Technology Stack</h3>
@@ -190,7 +231,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>Made with  by Badavath Arjun | Powered by JokeAPI & Fun Facts API</p>
+      <p>Made with ❤️ by Arjun | Powered by JokeAPI & Fun Facts API</p>
       <div class="socials">
         <a href="https://github.com/BadavathArjun"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/badavath-arjun-33ab93256/"><i class="fab fa-linkedin"></i></a>

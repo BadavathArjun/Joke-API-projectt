@@ -593,4 +593,110 @@ footer p {
   .card-actions .btn {
     width: 100%;
   }
+
+}
+/* Advanced Fun Fact Section (extends previous styles) */
+#advanced-fact-section {
+  padding: 70px 20px;
+}
+
+#advanced-fact-section .section-header h2 {
+  color: #39a0ca;
+}
+
+.fact-cat-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid #ff414e;
+  background: #fff685;
+  color: #ff414e;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.28s;
+  margin-bottom: 7px;
+}
+
+.fact-cat-btn.selected {
+  background: #ff414e;
+  color: #fff;
+  border-color: #39a0ca;
+}
+
+.fact-cat-btn:hover {
+  background: #39a0ca;
+  color: #fff;
+}
+
+#advanced-facts-list {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Fact Card */
+.fact-item-card {
+  background: linear-gradient(110deg, #fff685 70%, #ffaaab 100%);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(255,65,78,0.10);
+  padding: 23px 25px 18px 18px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  animation: popIn .7s cubic-bezier(.47,1.64,.41,.72);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.fact-card-icon {
+  font-size: 2.2rem;
+  margin-right: 18px;
+  flex-shrink: 0;
+  color: #39a0ca;
+}
+
+.fact-content {
+  flex-grow: 1;
+}
+
+.fact-text {
+  font-size: 1.15rem;
+  color: #444;
+  margin-bottom: 12px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.fact-tags {
+  font-size: 0.98rem;
+  color: #ff414e;
+  opacity: 0.85;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.fact-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 2px;
+}
+
+.save-fact-btn {
+  background: transparent;
+  border: none;
+  color: #ff414e;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.save-fact-btn.saved {
+  color: #ffd700;
+}
+
+.save-fact-btn:hover {
+  color: #39a0ca;
 }
